@@ -21,7 +21,7 @@ tasks.test {
     useJUnitPlatform()
 }
 
-//application { mainClass.set("hexlet.code.App") }
+application { mainClass.set("hexlet.code.App") }
 
 tasks.compileJava {
     options.release = 20
