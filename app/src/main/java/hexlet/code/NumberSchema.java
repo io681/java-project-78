@@ -1,13 +1,11 @@
 package hexlet.code;
 
-public final class NumberSchema {
+public final class NumberSchema extends BaseSchema {
     static final NumberSchema NUMBER_SCHEMA = new NumberSchema();
     private boolean isPositive;
-    private boolean isRequired;
     private int numberForValidation;
     private int[] range = new int[2];
     private boolean isRange;
-
     private NumberSchema() {
     }
 
@@ -73,13 +71,6 @@ public final class NumberSchema {
         this.numberForValidation = numberForValidation;
     }
 
-    public boolean isRequired() {
-        return isRequired;
-    }
-
-    public void setRequired(boolean required) {
-        isRequired = required;
-    }
 
     public int[] getRange() {
         return range;
