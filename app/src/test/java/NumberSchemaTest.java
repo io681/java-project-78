@@ -1,5 +1,6 @@
-import hexlet.code.StringSchema;
+import hexlet.code.NumberSchema;
 import hexlet.code.Validator;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -72,5 +73,10 @@ public class NumberSchemaTest {
         assertFalse(result2, "Failed test");
         assertFalse(result3, "Failed test");
         assertFalse(result4, "Failed test");
+    }
+
+    @AfterEach
+    void clear() {
+        schema.clearCash();
     }
 }

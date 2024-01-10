@@ -1,15 +1,16 @@
 package hexlet.code;
 
 public final class StringSchema {
-    static final StringSchema STRINGSCHEMA = new StringSchema();
+    static final StringSchema STRING_SCHEMA = new StringSchema();
     private String stringForValidation;
-    private boolean required;
+    private boolean isRequired;
     private int minLength;
     private String contains;
     private StringSchema() {
+
     }
     public static StringSchema getStringSchema() {
-        return STRINGSCHEMA;
+        return STRING_SCHEMA;
     }
 
     public boolean isValid(Object obj) {
@@ -59,11 +60,11 @@ public final class StringSchema {
     }
 
     public boolean isRequired() {
-        return required;
+        return isRequired;
     }
 
     public void setRequired(boolean required) {
-        this.required = required;
+        this.isRequired = required;
     }
 
     public int getMinLength() {
