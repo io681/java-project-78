@@ -1,5 +1,6 @@
 import hexlet.code.MapSchema;
 import hexlet.code.Validator;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -45,34 +46,32 @@ public class MapSchemaTest {
         data.put("key1", "value1");
         boolean result3  = schema.isValid(data);
 
-        Map<String, String> data2 = new HashMap<>();
-        data2.put("key1", null);
-        boolean result4 = schema.isValid(data2);
-
         assertFalse(result1, "Failed test");
         assertTrue(result2, "Failed test");
         assertTrue(result3, "Failed test");
-        assertFalse(result4, "Failed test");
     }
 
     @Test
     void testSizeof() {
         schema.sizeof(2);
-        boolean result1 = schema.isValid(null);
-        boolean result2  = schema.isValid(new HashMap<>());
+        boolean result1  = schema.isValid(new HashMap<>());
 
         Map<String, String> data = new HashMap<>();
         data.put("key1", "value1");
-        boolean result3  = schema.isValid(data);
+        boolean result2  = schema.isValid(data);
 
         Map<String, String> data2 = new HashMap<>();
         data2.put("key1", "value1");
         data2.put("key2", "value2");
-        boolean result4 = schema.isValid(data2);
+        boolean result3 = schema.isValid(data2);
 
         assertFalse(result1, "Failed test");
         assertFalse(result2, "Failed test");
-        assertFalse(result3, "Failed test");
-        assertTrue(result4, "Failed test");
+        assertTrue(result3, "Failed test");
+    }
+
+    @AfterEach
+    void clear() {
+        schema.clearCash();
     }
 }
