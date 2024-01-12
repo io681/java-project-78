@@ -1,4 +1,4 @@
-package hexlet.code;
+package hexlet.code.schemas;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +42,10 @@ public final class MapSchema extends BaseSchema {
     public MapSchema sizeof(int size) {
         setSizeForValid(size);
         return getMapSchema();
+    }
+
+    public void shape(Map<String, BaseSchema> schemas) {
+//        desription schema for each key;
     }
 
     public void clearCash() {

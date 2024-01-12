@@ -1,4 +1,4 @@
-import hexlet.code.NumberSchema;
+import hexlet.code.schemas.NumberSchema;
 import hexlet.code.Validator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

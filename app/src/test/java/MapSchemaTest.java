@@ -1,4 +1,4 @@
-import hexlet.code.MapSchema;
+import hexlet.code.schemas.MapSchema;
 import hexlet.code.Validator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
