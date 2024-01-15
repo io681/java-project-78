@@ -18,7 +18,7 @@ public final class NumberSchema extends BaseSchema {
         }
 
         try {
-            if (isPositive() && actual < 0) {
+            if (isPositive() && actual <= 0) {
                 return false;
             }
         } catch (NullPointerException exc) {
