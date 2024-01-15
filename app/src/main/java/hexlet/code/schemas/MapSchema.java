@@ -39,6 +39,10 @@ public final class MapSchema<K, V> extends BaseSchema {
         return obj instanceof Map<?, ?> || obj == null;
     }
 
+    public MapSchema<K, V> required() {
+        setRequired(true);
+        return this;
+    }
     public boolean isValid(Object obj, BaseSchema schema) {
         return schema.isValid(obj);
     }

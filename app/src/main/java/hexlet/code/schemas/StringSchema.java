@@ -28,6 +28,10 @@ public final class StringSchema extends BaseSchema {
     public boolean checkInstance(Object obj) {
         return obj instanceof String || obj == null;
     }
+    public StringSchema required() {
+        setRequired(true);
+        return this;
+    }
     public StringSchema minLength(int number) {
         setMinLength(number);
         return this;

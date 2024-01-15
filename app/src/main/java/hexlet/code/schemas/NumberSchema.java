@@ -34,7 +34,10 @@ public final class NumberSchema extends BaseSchema {
     public boolean checkInstance(Object obj) {
         return obj instanceof Integer || obj == null;
     }
-
+    public NumberSchema required() {
+        setRequired(true);
+        return this;
+    }
     public NumberSchema positive() {
         setPositive(true);
         return this;
