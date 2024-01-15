@@ -5,8 +5,9 @@ public abstract class BaseSchema {
     public boolean isRequired() {
         return isRequired;
     }
-    public void required() {
+    public BaseSchema required() {
         setRequired(true);
+        return this;
     }
     public boolean isValid(Object obj) {
         if (!(checkInstance(obj))) {
