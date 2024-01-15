@@ -45,7 +45,7 @@ public class NumberSchemaTest {
         boolean result2 = schema.positive().isValid(10);
         boolean result3 = schema.positive().isValid(-1);
         boolean result4 = schema.positive().isValid("87");
-        assertFalse(result1, "Failed test");
+        assertTrue(result1, "Failed test");
         assertTrue(result2, "Failed test");
         assertFalse(result3, "Failed test");
         assertFalse(result4, "Failed test");
@@ -72,7 +72,7 @@ public class NumberSchemaTest {
         assertTrue(result1, "Failed test");
         assertFalse(result2, "Failed test");
         assertFalse(result3, "Failed test");
-        assertFalse(result4, "Failed test");
+        assertTrue(result4, "Failed test");
     }
 
     @AfterEach

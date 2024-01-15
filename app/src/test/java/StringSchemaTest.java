@@ -1,5 +1,5 @@
-import hexlet.code.schemas.StringSchema;
 import hexlet.code.Validator;
+import hexlet.code.schemas.StringSchema;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -66,8 +66,9 @@ public class StringSchemaTest {
 
     @Test
     void testAllValidations() {
-        boolean result1 =  schema.required().minLength(4).isValid("Wha");
-        boolean result2 =  schema.required().minLength(4).isValid("What does");
+        schema.required();
+        boolean result1 =  schema.minLength(4).isValid("Wha");
+        boolean result2 =  schema.minLength(4).isValid("What does");
         assertFalse(result1, "Failed test AllValidations");
         assertTrue(result2, "Failed test AllValidations");
     }

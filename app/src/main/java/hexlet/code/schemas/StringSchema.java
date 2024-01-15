@@ -1,61 +1,41 @@
 package hexlet.code.schemas;
 
 public final class StringSchema extends BaseSchema {
-    static final StringSchema STRING_SCHEMA = new StringSchema();
-    private String stringForValidation;
     private int minLength;
     private String contains;
-
-    public static StringSchema getStringSchema() {
-        return STRING_SCHEMA;
+    public StringSchema() {
     }
-    private StringSchema() {
-    }
-
+    @Override
     public boolean isValid(Object obj) {
-        if (obj == null && isRequired()) {
-            return false;
-        }
+        String actual;
+        boolean result = super.isValid(obj);
 
         try {
-            setStringForValidation((String) obj);
+            actual = (String) obj;
         } catch (ClassCastException exc) {
             return false;
         }
 
-        if (isRequired() && getStringForValidation().isEmpty()) {
+        if (getMinLength() > 0 && actual.length() < getMinLength()) {
+            return false;
+        }
+        if (!(getContains() == null) && !actual.contains(getContains())) {
             return false;
         }
 
-        if (getMinLength() > 0 && getStringForValidation().length() < getMinLength()) {
-            return false;
-        }
-        if (!(getContains() == null) && !getStringForValidation().contains(getContains())) {
-            return false;
-        }
-
-        return true;
+        return result;
     }
-    public StringSchema required() {
-        setRequired(true);
-        return getStringSchema();
+    public boolean checkInstance(Object obj) {
+        return obj instanceof String || obj == null;
     }
     public StringSchema minLength(int number) {
         setMinLength(number);
-        return getStringSchema();
+        return this;
     }
 
     public StringSchema contains(String stringContains) {
         setContains(stringContains);
-        return getStringSchema();
-    }
-
-    public String getStringForValidation() {
-        return stringForValidation;
-    }
-
-    public void setStringForValidation(String stringForValidation) {
-        this.stringForValidation = stringForValidation;
+        return this;
     }
 
     public int getMinLength() {

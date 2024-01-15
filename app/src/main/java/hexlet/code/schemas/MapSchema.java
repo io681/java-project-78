@@ -3,50 +3,38 @@ package hexlet.code.schemas;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class MapSchema extends BaseSchema {
-    static final MapSchema MAP_SCHEMA = new MapSchema();
-    Map<?, ?> mapForValidation = new HashMap<>();
+
+public final class MapSchema<K,V> extends BaseSchema {
     int sizeForValid;
-    private MapSchema() {
+    public MapSchema() {
     }
-    public static MapSchema getMapSchema() {
-        return MAP_SCHEMA;
-    }
-
+    @Override
     public boolean isValid(Object obj) {
-        if (!(obj instanceof Map<?, ?>) && !(obj == null)) {
+        Map<K, V> actual;
+        boolean result = super.isValid(obj);
+
+        try {
+            actual = (HashMap<K, V>) obj;
+        } catch (ClassCastException exc) {
             return false;
         }
-        setMapForValidation((Map<?, ?>) obj);
 
-        if (isRequired() && obj == null) {
+        if (getSizeForValid() > 0 && !(actual.size() == getSizeForValid())) {
             return false;
         }
-        if (getSizeForValid() > 0 && !(getMapForValidation().size() == getSizeForValid())) {
-            return false;
-        }
-        return true;
+        return result;
+    }
+    public boolean checkInstance(Object obj) {
+        return obj instanceof Map<?, ?> || obj == null;
     }
 
-    public Map<?, ?> getMapForValidation() {
-        return mapForValidation;
-    }
-
-    public void setMapForValidation(Map<?, ?> mapForValidation) {
-        this.mapForValidation = mapForValidation;
-    }
-    public MapSchema required() {
-        setRequired(true);
-        return getMapSchema();
-    }
-    public MapSchema sizeof(int size) {
+    public MapSchema<K, V> sizeof(int size) {
         setSizeForValid(size);
-        return getMapSchema();
+        return this;
     }
 
-    public void shape(Map<String, BaseSchema> schemas) {
-//        desription schema for each key;
-    }
+//    public void shape(Map<String, BaseSchema> schemas) {
+//    }
 
     public void clearCash() {
         setRequired(false);

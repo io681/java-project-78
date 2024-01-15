@@ -1,52 +1,48 @@
 package hexlet.code.schemas;
 
 public final class NumberSchema extends BaseSchema {
-    static final NumberSchema NUMBER_SCHEMA = new NumberSchema();
     private boolean isPositive;
-    private int numberForValidation;
-    private int[] range = new int[2];
+    private final int[] range = new int[2];
     private boolean isRange;
-    private NumberSchema() {
+    public NumberSchema() {
     }
-
-    public static NumberSchema getNumberSchema() {
-        return NUMBER_SCHEMA;
-    }
-
+    @Override
     public boolean isValid(Object obj) {
-        if (!(obj instanceof Integer) && !(obj == null)) {
+        Integer actual;
+        boolean result = super.isValid(obj);
+
+        try {
+            actual = (Integer) obj;
+        } catch (ClassCastException exc) {
             return false;
         }
+
         try {
-            setNumberForValidation((int) obj);
+            if (isPositive() && actual < 0) {
+                return false;
+            }
         } catch (NullPointerException exc) {
             return !isRequired();
         }
 
-        if (isPositive() && getNumberForValidation() <= 0) {
-            return false;
-        }
-
         if (isRange()
-                && !(getNumberForValidation() >= getRange()[0] && getNumberForValidation() <= getRange()[1])) {
+                && !(actual >= getRange()[0] && actual <= getRange()[1])) {
             return false;
         }
-        return true;
+        return result;
+    }
+    public boolean checkInstance(Object obj) {
+        return obj instanceof Integer || obj == null;
     }
 
     public NumberSchema positive() {
         setPositive(true);
-        return getNumberSchema();
-    }
-
-    public NumberSchema required() {
-        setRequired(true);
-        return getNumberSchema();
+        return this;
     }
 
     public NumberSchema range(int startNumber, int endNumber) {
         setRange(startNumber, endNumber);
-        return getNumberSchema();
+        return this;
     }
 
     public void clearCash() {
@@ -62,15 +58,6 @@ public final class NumberSchema extends BaseSchema {
     public void setPositive(boolean positive) {
         isPositive = positive;
     }
-
-    public int getNumberForValidation() {
-        return numberForValidation;
-    }
-
-    public void setNumberForValidation(int numberForValidation) {
-        this.numberForValidation = numberForValidation;
-    }
-
 
     public int[] getRange() {
         return range;
