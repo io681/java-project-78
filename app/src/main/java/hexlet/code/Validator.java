@@ -7,8 +7,8 @@ import hexlet.code.schemas.StringSchema;
 
 public class Validator {
     public static final String STRING_SCHEMA = "StringSchema";
-    public static final String NUMBER_SCHEMA= "NumberSchema";
-    public static final String MAP_SCHEMA= "MapSchema";
+    public static final String NUMBER_SCHEMA = "NumberSchema";
+    public static final String MAP_SCHEMA = "MapSchema";
     BaseSchema schema;
     public StringSchema string() {
         return (StringSchema) getSchema("StringSchema");

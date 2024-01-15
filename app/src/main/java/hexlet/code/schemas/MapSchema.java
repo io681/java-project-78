@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public final class MapSchema<K,V> extends BaseSchema {
+public final class MapSchema<K, V> extends BaseSchema {
     int sizeForValid;
     public MapSchema() {
     }
