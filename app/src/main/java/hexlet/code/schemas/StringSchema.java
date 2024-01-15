@@ -5,11 +5,11 @@ public final class StringSchema extends BaseSchema {
     private String contains;
     public StringSchema() {
     }
-    @Override
-    public boolean isValid(Object obj) {
+    public boolean checkInstance(Object obj) {
+        return obj instanceof String || obj == null;
+    }
+    public boolean additionalValidate(Object obj) {
         String actual;
-        boolean result = super.isValid(obj);
-
         try {
             actual = (String) obj;
         } catch (ClassCastException exc) {
@@ -23,10 +23,7 @@ public final class StringSchema extends BaseSchema {
             return false;
         }
 
-        return result;
-    }
-    public boolean checkInstance(Object obj) {
-        return obj instanceof String || obj == null;
+        return true;
     }
     public StringSchema required() {
         setRequired(true);

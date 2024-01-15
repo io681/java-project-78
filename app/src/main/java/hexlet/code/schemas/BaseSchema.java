@@ -2,17 +2,17 @@ package hexlet.code.schemas;
 
 public abstract class BaseSchema {
     private boolean isRequired;
-    boolean isRequired() {
+    public final boolean isRequired() {
         return isRequired;
     }
-    protected  boolean isValid(Object obj) {
+    public final boolean isValid(Object obj) {
         if (!(checkInstance(obj))) {
             return false;
         }
         if ((obj == null || obj.toString().isEmpty()) && isRequired()) {
             return false;
         }
-        return true;
+        return additionalValidate(obj);
     }
 
     public final void setRequired(boolean required) {
@@ -20,5 +20,6 @@ public abstract class BaseSchema {
     }
 
     public abstract boolean checkInstance(Object obj);
+    public abstract boolean additionalValidate(Object obj);
 
 }

@@ -10,10 +10,11 @@ public final class MapSchema<K, V> extends BaseSchema {
     private boolean isShape;
     public MapSchema() {
     }
-    @Override
-    public boolean isValid(Object obj) {
+    public boolean checkInstance(Object obj) {
+        return obj instanceof Map<?, ?> || obj == null;
+    }
+    public boolean additionalValidate(Object obj) {
         Map<K, V> actual;
-        boolean result = super.isValid(obj);
 
         try {
             actual = (HashMap<K, V>) obj;
@@ -33,10 +34,7 @@ public final class MapSchema<K, V> extends BaseSchema {
             }
         }
 
-        return result;
-    }
-    public boolean checkInstance(Object obj) {
-        return obj instanceof Map<?, ?> || obj == null;
+        return true;
     }
 
     public MapSchema<K, V> required() {

@@ -6,7 +6,7 @@ import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
 
 public final class Validator {
-    BaseSchema schema;
+    private BaseSchema schema;
     public StringSchema string() {
         return new StringSchema();
     }

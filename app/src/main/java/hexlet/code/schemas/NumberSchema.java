@@ -6,10 +6,12 @@ public final class NumberSchema extends BaseSchema {
     private boolean isRange;
     public NumberSchema() {
     }
-    @Override
-    public boolean isValid(Object obj) {
+    public boolean checkInstance(Object obj) {
+        return obj instanceof Integer || obj == null;
+    }
+
+    public boolean additionalValidate(Object obj) {
         Integer actual;
-        boolean result = super.isValid(obj);
 
         try {
             actual = (Integer) obj;
@@ -29,10 +31,7 @@ public final class NumberSchema extends BaseSchema {
                 && !(actual >= getRange()[0] && actual <= getRange()[1])) {
             return false;
         }
-        return result;
-    }
-    public boolean checkInstance(Object obj) {
-        return obj instanceof Integer || obj == null;
+        return true;
     }
     public NumberSchema required() {
         setRequired(true);
