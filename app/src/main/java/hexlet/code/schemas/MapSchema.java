@@ -65,8 +65,8 @@ public final class MapSchema<K, V> extends BaseSchema {
         return sizeForValid;
     }
 
-    public void setSizeForValid(int sizeForValid) {
-        this.sizeForValid = sizeForValid;
+    public void setSizeForValid(int sizeForSetValid) {
+        this.sizeForValid = sizeForSetValid;
     }
 
     public boolean isShape() {
@@ -81,7 +81,7 @@ public final class MapSchema<K, V> extends BaseSchema {
         return schemas;
     }
 
-    public void setSchemas(Map<String, BaseSchema> schemas) {
-        this.schemas = schemas;
+    public void setSchemas(Map<String, BaseSchema> schemasForSet) {
+        this.schemas = schemasForSet;
     }
 }

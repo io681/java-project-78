@@ -46,16 +46,16 @@ public final class StringSchema extends BaseSchema {
         return minLength;
     }
 
-    public void setMinLength(int minLength) {
-        this.minLength = minLength;
+    public void setMinLength(int minLengthForSet) {
+        this.minLength = minLengthForSet;
     }
 
     public String getContains() {
         return contains;
     }
 
-    public void setContains(String contains) {
-        this.contains = contains;
+    public void setContains(String containsForSet) {
+        this.contains = containsForSet;
     }
 
     public void clearCash() {

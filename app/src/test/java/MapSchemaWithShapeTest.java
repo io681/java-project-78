@@ -10,8 +10,8 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MapSchemaWithShapeTest {
-    static MapSchema schema;
+public final class MapSchemaWithShapeTest {
+    private static MapSchema schema;
     @BeforeAll
     static void init() {
         Validator v = new Validator();
