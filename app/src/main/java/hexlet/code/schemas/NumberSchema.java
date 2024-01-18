@@ -1,81 +1,33 @@
 package hexlet.code.schemas;
 
 public final class NumberSchema extends BaseSchema {
-    private boolean isPositive;
-    private final int[] range = new int[2];
-    private boolean isRange;
-    public NumberSchema() {
-    }
     public boolean checkInstance(Object obj) {
         return obj instanceof Integer || obj == null;
     }
-
-    public boolean additionalValidate(Object obj) {
-        Integer actual;
-
-        try {
-            actual = (Integer) obj;
-        } catch (ClassCastException exc) {
-            return false;
-        }
-
-        try {
-            if (isPositive() && actual <= 0) {
-                return false;
-            }
-        } catch (NullPointerException exc) {
-            return !isRequired();
-        }
-
-        if (isRange()
-                && !(actual >= getRange()[0] && actual <= getRange()[1])) {
-            return false;
-        }
-        return true;
-    }
     public NumberSchema required() {
-        setRequired(true);
+        getDataValidSchemas().put("isRequired", obj -> !((obj == null || obj.toString().isEmpty())));
         return this;
     }
     public NumberSchema positive() {
-        setPositive(true);
+        getDataValidSchemas().put("isPositive", obj -> {
+            try {
+                return this.convertType(obj) > 0;
+            } catch (NullPointerException exc) {
+                return this.convertType(obj) == null;
+            }
+        });
         return this;
     }
-
     public NumberSchema range(int startNumber, int endNumber) {
-        setRange(startNumber, endNumber);
+        getDataValidSchemas().put("isRange", obj -> this.convertType(obj) >= startNumber
+                && this.convertType(obj) <= endNumber);
         return this;
     }
-
-    public void clearCash() {
-        setRequired(false);
-        setPositive(false);
-        clearIsRange();
+    public Integer convertType(Object obj) {
+        try {
+            return (Integer) obj;
+        } catch (ClassCastException | NullPointerException exc) {
+            return null;
+        }
     }
-
-    public boolean isPositive() {
-        return isPositive;
-    }
-
-    public void setPositive(boolean positive) {
-        isPositive = positive;
-    }
-
-    public int[] getRange() {
-        return range;
-    }
-
-    public void setRange(int startNumber, int endNumber) {
-        this.range[0] = startNumber;
-        this.range[1] = endNumber;
-        this.isRange = true;
-    }
-
-    public boolean isRange() {
-        return isRange;
-    }
-    public void clearIsRange() {
-        this.isRange = false;
-    }
-
 }

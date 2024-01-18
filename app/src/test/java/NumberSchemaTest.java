@@ -1,6 +1,5 @@
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.Validator;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +14,6 @@ public final class NumberSchemaTest {
         Validator v = new Validator();
         schema = v.number();
     }
-
     @Test
     void testSimplyIsValid() {
         boolean result1 = schema.isValid(null);
@@ -27,7 +25,6 @@ public final class NumberSchemaTest {
         assertFalse(result3, "Failed test");
         assertTrue(result4, "Failed test");
     }
-
     @Test
     void testRequired() {
         schema.required();
@@ -38,7 +35,6 @@ public final class NumberSchemaTest {
         assertFalse(result2, "Failed test");
         assertTrue(result3, "Failed test");
     }
-
     @Test
     void testPositive() {
         boolean result1 = schema.positive().isValid(0);
@@ -50,7 +46,6 @@ public final class NumberSchemaTest {
         assertFalse(result3, "Failed test");
         assertFalse(result4, "Failed test");
     }
-
     @Test
     void testRange() {
         boolean result1 = schema.range(5, 10).isValid(5);
@@ -62,7 +57,6 @@ public final class NumberSchemaTest {
         assertFalse(result3, "Failed test");
         assertFalse(result4, "Failed test");
     }
-
     @Test
     void testAllValidation() {
         boolean result1 = schema.positive().range(-5, 5).isValid(5);
@@ -73,10 +67,5 @@ public final class NumberSchemaTest {
         assertFalse(result2, "Failed test");
         assertFalse(result3, "Failed test");
         assertFalse(result4, "Failed test");
-    }
-
-    @AfterEach
-    void clear() {
-        schema.clearCash();
     }
 }

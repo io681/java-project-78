@@ -1,25 +1,24 @@
 package hexlet.code.schemas;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Predicate;
+
 public abstract class BaseSchema {
-    private boolean isRequired;
-    public final boolean isRequired() {
-        return isRequired;
+    private Map<String, Predicate> dataValidSchemas = new HashMap<>();
+    public BaseSchema() {
+        dataValidSchemas.put("isInstance", obj -> checkInstance(obj));
     }
     public final boolean isValid(Object obj) {
-        if (!(checkInstance(obj))) {
-            return false;
+        for (var entry : getDataValidSchemas().entrySet()) {
+            if (!entry.getValue().test(obj)) {
+                return  false;
+            }
         }
-        if ((obj == null || obj.toString().isEmpty()) && isRequired()) {
-            return false;
-        }
-        return additionalValidate(obj);
+        return true;
     }
-
-    public final void setRequired(boolean required) {
-        isRequired = required;
-    }
-
     public abstract boolean checkInstance(Object obj);
-    public abstract boolean additionalValidate(Object obj);
-
+    public Map<String, Predicate> getDataValidSchemas() {
+        return dataValidSchemas;
+    }
 }

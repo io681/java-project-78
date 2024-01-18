@@ -1,6 +1,5 @@
 import hexlet.code.schemas.MapSchema;
 import hexlet.code.Validator;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +17,6 @@ public final class MapSchemaTest {
         Validator v = new Validator();
         schema = v.map();
     }
-
     @Test
     void testSimplyIsValid() {
         boolean result1 = schema.isValid(null);
@@ -35,7 +33,6 @@ public final class MapSchemaTest {
         assertTrue(result3, "Failed test");
         assertFalse(result4, "Failed test");
     }
-
     @Test
     void testRequired() {
         schema.required();
@@ -50,7 +47,6 @@ public final class MapSchemaTest {
         assertTrue(result2, "Failed test");
         assertTrue(result3, "Failed test");
     }
-
     @Test
     void testSizeof() {
         schema.sizeof(2);
@@ -68,10 +64,5 @@ public final class MapSchemaTest {
         assertFalse(result1, "Failed test");
         assertFalse(result2, "Failed test");
         assertTrue(result3, "Failed test");
-    }
-
-    @AfterEach
-    void clear() {
-        schema.clearCash();
     }
 }

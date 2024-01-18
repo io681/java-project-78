@@ -22,7 +22,6 @@ public final class MapSchemaWithShapeTest {
         schemas.put("age", v.number().positive());
         schema.shape(schemas);
     }
-
     @Test
     public void shapeTest1() {
         Map<String, Object> human1 = new HashMap<>();
@@ -31,7 +30,6 @@ public final class MapSchemaWithShapeTest {
         boolean result = schema.isValid(human1);
         assertTrue(result, "Failed test");
     }
-
     @Test
     public void shapeTest2() {
         Map<String, Object> human2 = new HashMap<>();
@@ -40,7 +38,6 @@ public final class MapSchemaWithShapeTest {
         boolean result = schema.isValid(human2);
         assertTrue(result, "Failed test");
     }
-
     @Test
     public void shapeTest3() {
         Map<String, Object> human3 = new HashMap<>();
@@ -49,7 +46,6 @@ public final class MapSchemaWithShapeTest {
         boolean result = schema.isValid(human3);
         assertFalse(result, "Failed test");
     }
-
     @Test
     public void shapeTest4() {
         Map<String, Object> human4 = new HashMap<>();

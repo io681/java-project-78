@@ -1,6 +1,5 @@
 import hexlet.code.Validator;
 import hexlet.code.schemas.StringSchema;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +21,6 @@ public final class StringSchemaTest {
         assertTrue(schema.isValid(null), "Failed test isValid");
         assertTrue(schema.isValid("what does the fox say"), "Failed test isValid");
     }
-
     @Test
     void testRequired() {
         schema.required();
@@ -31,7 +29,6 @@ public final class StringSchemaTest {
         assertFalse(schema.isValid(5), "Failed test isValid");
         assertTrue(schema.isValid("what does the fox say"), "Failed test isValid");
     }
-
     @Test
     void testContains() {
         schema.required();
@@ -43,7 +40,6 @@ public final class StringSchemaTest {
         assertTrue(result2, "Failed test contains");
         assertFalse(result3, "Failed test contains");
     }
-
     @Test
     void testIsValidAndContains() {
         schema.contains("whatthe").isValid("what does the fox say");
@@ -51,7 +47,6 @@ public final class StringSchemaTest {
         // Здесь уже false, так как добавлена еще одна проверка contains("whatthe")
         assertFalse(result, "Failed test isValid and contains");
     }
-
     @Test
     void testMinLength() {
         schema.required();
@@ -63,7 +58,6 @@ public final class StringSchemaTest {
         assertTrue(result2, "Failed test minLength");
         assertTrue(result3, "Failed test minLength");
     }
-
     @Test
     void testAllValidations() {
         schema.required();
@@ -71,10 +65,5 @@ public final class StringSchemaTest {
         boolean result2 =  schema.minLength(4).isValid("What does");
         assertFalse(result1, "Failed test AllValidations");
         assertTrue(result2, "Failed test AllValidations");
-    }
-
-    @AfterEach
-    void clear() {
-        schema.clearCash();
     }
 }
