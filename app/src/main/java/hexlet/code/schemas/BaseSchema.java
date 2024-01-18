@@ -18,7 +18,7 @@ public abstract class BaseSchema {
         return true;
     }
     public abstract boolean checkInstance(Object obj);
-    public Map<String, Predicate> getDataValidSchemas() {
+    public final Map<String, Predicate> getDataValidSchemas() {
         return dataValidSchemas;
     }
 }
