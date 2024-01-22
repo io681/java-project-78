@@ -36,8 +36,6 @@ tasks.test {
     finalizedBy(tasks.jacocoTestReport)
 }
 
-application { mainClass.set("hexlet.code.App") }
-
 tasks.compileJava {
     options.release = 20
 }
