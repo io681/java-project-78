@@ -5,11 +5,11 @@ public final class NumberSchema extends BaseSchema {
         return obj instanceof Integer || obj == null;
     }
     public NumberSchema required() {
-        getDataValidSchemas().put("isRequired", obj -> !((obj == null || obj.toString().isEmpty())));
+        dataValidSchemas.put("isRequired", obj -> !((obj == null || obj.toString().isEmpty())));
         return this;
     }
     public NumberSchema positive() {
-        getDataValidSchemas().put("isPositive", obj -> {
+        dataValidSchemas.put("isPositive", obj -> {
             try {
                 return this.convertType(obj) > 0;
             } catch (NullPointerException exc) {
@@ -19,7 +19,7 @@ public final class NumberSchema extends BaseSchema {
         return this;
     }
     public NumberSchema range(int startNumber, int endNumber) {
-        getDataValidSchemas().put("isRange", obj -> this.convertType(obj) >= startNumber
+        dataValidSchemas.put("isRange", obj -> this.convertType(obj) >= startNumber
                 && this.convertType(obj) <= endNumber);
         return this;
     }
