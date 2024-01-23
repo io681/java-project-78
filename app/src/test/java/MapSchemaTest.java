@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public final class MapSchemaTest {
     private static MapSchema schema;
     private static Validator v = new Validator();
-    static Map<String, BaseSchema> schemas = new HashMap<>();
+    private static Map<String, BaseSchema> schemas = new HashMap<>();
     @BeforeEach
     void init() {
         schema = v.map();
